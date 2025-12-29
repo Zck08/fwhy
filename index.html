@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz año</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: black;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        @keyframes firework {
+        0% { 
+            transform: translate(-50%, 60vh);
+            width: 0.5vmin;
+            opacity: 1;
+        }
+        50% { 
+            width: 0.5vmin;
+            opacity: 1;
+        }
+        100% { 
+            width: 45vmin; 
+            opacity: 0; 
+        }
+        }
+
+        .firework,
+        .firework::before,
+        .firework::after {
+        --top: 60vh;
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0.5vmin;
+        aspect-ratio: 1;
+        background:
+            radial-gradient(circle, var(--firework-color) 0.2vmin, #0000 0) 50% 00%,
+            radial-gradient(circle, var(--firework-color) 0.3vmin, #0000 0) 00% 50%,
+            radial-gradient(circle, var(--firework-color) 0.5vmin, #0000 0) 50% 99%,
+            radial-gradient(circle, var(--firework-color) 0.2vmin, #0000 0) 99% 50%,
+            radial-gradient(circle, var(--firework-color) 0.3vmin, #0000 0) 80% 90%,
+            radial-gradient(circle, var(--firework-color) 0.5vmin, #0000 0) 95% 90%,
+            radial-gradient(circle, var(--firework-color) 0.5vmin, #0000 0) 10% 60%,
+            radial-gradient(circle, var(--firework-color) 0.2vmin, #0000 0) 31% 80%,
+            radial-gradient(circle, var(--firework-color) 0.3vmin, #0000 0) 80% 10%,
+            radial-gradient(circle, var(--firework-color) 0.2vmin, #0000 0) 90% 23%,
+            radial-gradient(circle, var(--firework-color) 0.3vmin, #0000 0) 45% 20%,
+            radial-gradient(circle, var(--firework-color) 0.5vmin, #0000 0) 13% 24%;
+        background-size: 0.5vmin 0.5vmin;
+        background-repeat: no-repeat;
+        animation: firework 2s infinite;
+        }
+
+        .firework::before {
+        transform: translate(-50%, -50%) rotate(25deg) !important; 
+        }
+
+        .firework::after {
+        transform: translate(-50%, -50%) rotate(-37deg) !important;
+        }
+    </style>
+</head>
+    <script>
+    document.addEventListener("click", function(event) {
+
+    const color = `hsl(${Math.random() * 360}, 100%, 60%)`;
+
+    for (let i = 0; i < 30; i++) {
+        let firework = document.createElement("div");
+        firework.classList.add("firework");
+
+        // asignar color al fuego artificial
+        firework.style.setProperty("--firework-color", color);
+
+        document.body.appendChild(firework);
+
+        let x = event.clientX;
+        let y = event.clientY;
+        let angle = Math.random() * 2 * Math.PI;
+        let distance = Math.random() * 100;
+
+        let fx = x + Math.cos(angle) * distance;
+        let fy = y + Math.sin(angle) * distance;
+
+        firework.style.left = `${x}px`;
+        firework.style.top = `${y}px`;
+        firework.style.transform = `translate(${fx - x}px, ${fy - y}px)`;
+        firework.style.animationDelay = `${Math.random() * 0.5}s`;
+
+        setTimeout(() => firework.remove(), 1500);
+    }
+    });
+    </script>
+</body>
+</html>
