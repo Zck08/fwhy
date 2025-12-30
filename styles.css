@@ -6,7 +6,7 @@ body{
     justify-content: center;
     align-items: center;
 }
-.h1{
+.h4{
     font-family: fantasy;
     font-size: clamp(1rem, 5vw, 5rem);
     font-weight: bolder;
