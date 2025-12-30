@@ -17,35 +17,31 @@ body{
 }
 
 .contenedor {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   height: 100vh;
+  z-index: 1;
 }
 
-/* Columnas laterales */
 .lado {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  pointer-events: none;
 }
 
-/* Columna central */
 .centro {
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  padding: 1.5rem;
+  z-index: 2;
 }
 
 #fireworks {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
+  z-index: 0;
 }
-
 @media (max-width: 768px) {
   .contenedor {
     grid-template-columns: 1fr 3fr 1fr; /* centro más ancho */

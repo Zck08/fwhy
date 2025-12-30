@@ -26,7 +26,7 @@
   </div>
 </div>
 <script>
-    const canvas = document.getElementById("fireworks");
+const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
 
 let w, h;
@@ -38,9 +38,17 @@ resize();
 window.addEventListener("resize", resize);
 
 const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-const PARTICLES = isMobile ? 30 : 60;
+const PARTICLES = isMobile ? 25 : 50;
 const GRAVITY = 0.04;
 const FRICTION = 0.98;
+
+// Porcentajes según grid-template-columns: 1fr 2fr 1fr
+function randomSideX() {
+  const sideWidth = w * 0.25; // columnas laterales
+  return Math.random() < 0.5
+    ? Math.random() * sideWidth                   // izquierda
+    : w - sideWidth + Math.random() * sideWidth;  // derecha
+}
 
 class Particle {
   constructor(x, y) {
@@ -53,6 +61,7 @@ class Particle {
     this.alpha = 1;
     this.color = `hsl(${Math.random() * 360},100%,60%)`;
   }
+
   update() {
     this.vx *= FRICTION;
     this.vy = this.vy * FRICTION + GRAVITY;
@@ -60,6 +69,7 @@ class Particle {
     this.y += this.vy;
     this.alpha -= 0.015;
   }
+
   draw() {
     ctx.globalAlpha = this.alpha;
     ctx.fillStyle = this.color;
@@ -73,14 +83,23 @@ class Particle {
 let fireworks = [];
 
 function explode() {
-  const x = Math.random() * w;
+  const sideWidth = w * 0.25;
   const y = Math.random() * h * 0.6;
+
+  // LADO IZQUIERDO
+  const xLeft = Math.random() * sideWidth;
   for (let i = 0; i < PARTICLES; i++) {
-    fireworks.push(new Particle(x, y));
+    fireworks.push(new Particle(xLeft, y));
+  }
+
+  // LADO DERECHO
+  const xRight = w - sideWidth + Math.random() * sideWidth;
+  for (let i = 0; i < PARTICLES; i++) {
+    fireworks.push(new Particle(xRight, y));
   }
 }
 
-setInterval(explode, isMobile ? 1200 : 800);
+setInterval(explode, 600);
 
 function animate() {
   ctx.clearRect(0, 0, w, h);
