@@ -79,9 +79,17 @@
             font-family: serif;
             font-weight: bolder;
             line-height: 0.8;
-            text-shadow: 0 0 40px #b565ffc7;
+            text-shadow:
+             0 0 clamp(8px, 2vw, 20px) rgba(255, 87, 227, 0.6),
+             0 0 clamp(16px, 4vw, 40px) rgba(255, 87, 227, 0.6);
             text-align: center;
         }
+
+        @media (max-width: 480px) {
+        .h1 {
+            text-shadow: 0 0 10px rgba(255, 87, 227, 0.6);
+        }
+}
         
     </style>
 </head>
