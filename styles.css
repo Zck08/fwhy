@@ -48,12 +48,14 @@ body{
   justify-content: center;
   text-align: center;
   z-index: 2;
+  overflow: visible;
 }
 
 #fireworks {
   position: fixed;
   inset: 0;
   z-index: 0;
+  pointer-events: none; /* MUY importante */
 }
 @media (max-width: 768px) {
   .contenedor {
