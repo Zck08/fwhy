@@ -1,6 +1,8 @@
 body{
     background-color: rgb(0, 0, 0);
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -31,7 +33,7 @@ body{
   position: relative;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  height: 100vh;
+  min-height: 100vh;
   z-index: 1;
 }
 
