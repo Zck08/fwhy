@@ -10,16 +10,12 @@
 
 <body>
 
-
+<canvas id="fireworks"></canvas>
 <div class="contenedor">
-  <div class="stars1">    
-    <div class="lado">
-      <canvas id="fireworks"></canvas>
-    </div>
+  <div class="stars1 lado">    
   </div>
   
   <div class="centro">
-    <canvas id="fireworks"></canvas>
     <h1 class="h1">Feliz año amor ♥</h1>
     <p class="p">
       Seguramente este no ha sido el mejor año para ti,
@@ -58,10 +54,7 @@
     </p>
   </div>
 
-  <div class="stars1">    
-    <div class="lado">
-      <canvas id="fireworks"></canvas>
-    </div>
+  <div class="stars1 lado">    
   </div>
 
 </div>
@@ -76,11 +69,19 @@ const ctx = canvas.getContext("2d");
 
 let w, h;
 function resize() {
+  const vh = window.visualViewport
+    ? window.visualViewport.height
+    : window.innerHeight;
+
   w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
+  h = canvas.height = vh;
 }
+
 resize();
 window.addEventListener("resize", resize);
+if (window.visualViewport) {
+  window.visualViewport.addEventListener("resize", resize);
+}
 
 const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 const PARTICLES = isMobile ? 25 : 50;
@@ -129,7 +130,7 @@ let fireworks = [];
 
 function explode() {
   const sideWidth = w * 0.25;
-  const y = Math.random() * h;
+  const y = Math.random() * (h * 0.9);
 
   // LADO IZQUIERDO
   const xLeft = Math.random() * sideWidth;
