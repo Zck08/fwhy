@@ -12,13 +12,14 @@
 
 
 <div class="contenedor">
-  <div class="lado">
-    <canvas id="fireworks"></canvas>
+  <div class="stars1">    
+    <div class="lado">
+      <canvas id="fireworks"></canvas>
+    </div>
   </div>
-
   
   <div class="centro">
-    <h1 class="h1">Feliz año amor ❤️</h1>
+    <h1 class="h1">Feliz año amor ♥</h1>
     <p class="p">
       Seguramente este no ha sido el mejor año para ti,
       pero quiero agradecerte por haber hecho mejor el mio,
@@ -126,7 +127,7 @@ let fireworks = [];
 
 function explode() {
   const sideWidth = w * 0.25;
-  const y = Math.random() * h * 0.9;
+  const y = Math.random() * h;
 
   // LADO IZQUIERDO
   const xLeft = Math.random() * sideWidth;
