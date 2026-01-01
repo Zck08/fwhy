@@ -454,6 +454,6 @@ body{
         transform: translateY(0);
     }
     100% {
-        transform: translateY(-200px);
+        transform: translateY(-50px);
     }
 }
